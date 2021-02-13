@@ -64,7 +64,10 @@ namespace BasicServerHTTPlistener
                 // class for header utils fonctions
                 Header headerUtils = new Header(request);
                 // print request headers
-                headerUtils.printHeaders();
+                Console.WriteLine("Headers : \n");
+                headerUtils.printHeaders("Accept Headers", headerUtils.getAcceptHeaders());
+                headerUtils.printHeaders("Connection Headers", headerUtils.getConnexionHeaders());
+                headerUtils.printHeaders("Other Headers", headerUtils.getHeaders());
 
                 // class used to parse query
                 UrlAnalyzer urlUtils = new UrlAnalyzer(request.Url);

@@ -29,7 +29,6 @@ namespace BasicWebServer
             foreach (string key in parameters.AllKeys)
             {
                 string[] values = parameters.GetValues(key);
-                // res += 
                 foreach (string value in values)
                 {
                     if (count == 0) res += " ";
