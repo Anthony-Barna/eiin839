@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExternalInvoker.cs" />
     <Compile Include="UrlAnalyzer.cs" />
     <Compile Include="Header.cs" />
     <Compile Include="Program.cs" />

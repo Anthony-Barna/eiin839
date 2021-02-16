@@ -21,9 +21,21 @@ namespace BasicWebServer
             return HttpUtility.ParseQueryString(uri.Query);
         }
 
+        public String getHtmlOpeningContent()
+        {
+            return "<HTML>\n<head>" +
+                "<meta charset=\"utf - 8\">" +
+                "</head>\n<BODY>\n\n";
+        }
+
+        public String getHtmlClosingContent()
+        {
+            return "\n</BODY></HTML>\n";
+        }
+
         public String getHtmlContentWithParameters(System.Collections.Specialized.NameValueCollection parameters)
         {
-            String res = "<HTML><BODY> Hello ";
+            String res = "<h1>Contenu produit avec des fonctions internes au serveur web</h1>\n<p> Hello";
             int count = 0;
 
             foreach (string key in parameters.AllKeys)
@@ -39,7 +51,7 @@ namespace BasicWebServer
                 count++;
             }
 
-            return res + "</BODY></HTML>";
+            return res + "</p>\n\n";
         }
     }
 }

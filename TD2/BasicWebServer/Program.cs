@@ -1,6 +1,5 @@
 ﻿using BasicWebServer;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -69,9 +68,19 @@ namespace BasicServerHTTPlistener
                 headerUtils.printHeaders("Connection Headers", headerUtils.getConnexionHeaders());
                 headerUtils.printHeaders("Other Headers", headerUtils.getHeaders());
 
-                // class used to parse query
+                // class used to parse query and give html tools
                 UrlAnalyzer urlUtils = new UrlAnalyzer(request.Url);
-                String responseString = urlUtils.getHtmlContentWithParameters(urlUtils.getParameters());
+                // opening html tags
+                String responseString = urlUtils.getHtmlOpeningContent();
+                // dynamic content generated with internal methods
+                responseString += urlUtils.getHtmlContentWithParameters(urlUtils.getParameters());
+
+                // same thing using an external executable
+                ExternalInvoker invoker = new ExternalInvoker();
+                responseString += invoker.getExeStreamOutput(invoker.buildArgumentsString(urlUtils.getParameters()));
+
+                // closing html tags
+                responseString += urlUtils.getHtmlClosingContent();
 
                 // Obtain a response object.
                 HttpListenerResponse response = context.Response;
