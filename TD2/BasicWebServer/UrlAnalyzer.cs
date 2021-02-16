@@ -10,6 +10,7 @@ namespace BasicWebServer
     class UrlAnalyzer
     {
         private Uri uri;
+        private static int callsNumber = 0;
 
         public UrlAnalyzer(Uri uri)
         {
@@ -52,6 +53,12 @@ namespace BasicWebServer
             }
 
             return res + "</p>\n\n";
+        }
+
+        public String getCallsNumberHtmlContent()
+        {
+            callsNumber++;
+            return "\n<h2> Nombre d'appels au serveur: " + (callsNumber/2+1) + "</h2>\n";
         }
     }
 }

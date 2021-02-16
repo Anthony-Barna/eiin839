@@ -70,8 +70,13 @@ namespace BasicServerHTTPlistener
 
                 // class used to parse query and give html tools
                 UrlAnalyzer urlUtils = new UrlAnalyzer(request.Url);
+                
                 // opening html tags
                 String responseString = urlUtils.getHtmlOpeningContent();
+
+                // displays calls number, increments each time the server gets requested
+                responseString += urlUtils.getCallsNumberHtmlContent();
+
                 // dynamic content generated with internal methods
                 responseString += urlUtils.getHtmlContentWithParameters(urlUtils.getParameters());
 
