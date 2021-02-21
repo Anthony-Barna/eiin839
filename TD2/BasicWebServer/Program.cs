@@ -57,9 +57,14 @@ namespace BasicServerHTTPlistener
                         documentContents = readStream.ReadToEnd();
                     }
                 }
-                Console.WriteLine($"Received request for {request.Url}");
+                Console.WriteLine($"\nReceived request for {request.Url}");
                 Console.WriteLine(documentContents);
 
+                // class to call functions
+                MethodCollection methodCollection = new MethodCollection();
+                methodCollection.incrementRequestCounter();
+                // class to use reflection
+                ReflectionUtils reflectionUtils = new ReflectionUtils();
                 // class for header utils fonctions
                 Header headerUtils = new Header(request);
                 // print request headers
@@ -72,20 +77,13 @@ namespace BasicServerHTTPlistener
                 UrlAnalyzer urlUtils = new UrlAnalyzer(request.Url);
                 
                 // opening html tags
-                String responseString = urlUtils.getHtmlOpeningContent();
-
-                // displays calls number, increments each time the server gets requested
-                responseString += urlUtils.getCallsNumberHtmlContent();
-
-                // dynamic content generated with internal methods
-                responseString += urlUtils.getHtmlContentWithParameters(urlUtils.getParameters());
-
-                // same thing using an external executable
-                ExternalInvoker invoker = new ExternalInvoker();
-                responseString += invoker.getExeStreamOutput(invoker.buildArgumentsString(urlUtils.getParameters()));
+                String responseString = methodCollection.getHtmlOpeningContent();
+                
+                // calling method with reflection
+                responseString += reflectionUtils.executeMethod(urlUtils);
 
                 // closing html tags
-                responseString += urlUtils.getHtmlClosingContent();
+                responseString += methodCollection.getHtmlClosingContent();
 
                 // Obtain a response object.
                 HttpListenerResponse response = context.Response;
@@ -104,6 +102,7 @@ namespace BasicServerHTTPlistener
             // listener.Stop();
         }
 
+        // return static content in www directory
         private static string getFileContent(string url, HttpListenerResponse response)
         {
             string publicDirectory = "www";
