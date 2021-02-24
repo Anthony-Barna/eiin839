@@ -1,12 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\TD1",
-    "\\TD1\\HttpListener",
-    "\\TD1\\HttpListener\\BasicServerHttpListener",
-    "\\TD2",
-    "\\TD2\\ReflectionSample"
+    ""
   ],
-  "SelectedNode": "\\TD2\\BasicExamplesTP2.sln",
+  "SelectedNode": "\\TCP Clients Telnet and Web.sln",
   "PreviewInSolutionExplorer": false
 }
