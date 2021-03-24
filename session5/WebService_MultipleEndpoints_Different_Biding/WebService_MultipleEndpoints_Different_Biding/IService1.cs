@@ -12,7 +12,10 @@ namespace WebService_MultipleEndpoints_Different_Binding
     public interface IService1
     {
         [OperationContract]
-        string GetData(int value);
+        string GetData1(int value);
+
+        [OperationContract]
+        string GetData2(int value);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);

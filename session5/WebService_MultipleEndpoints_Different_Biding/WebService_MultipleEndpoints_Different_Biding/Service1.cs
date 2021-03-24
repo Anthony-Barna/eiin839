@@ -10,9 +10,14 @@ namespace WebService_MultipleEndpoints_Different_Binding
     // REMARQUE : vous pouvez utiliser la commande Renommer du menu Refactoriser pour changer le nom de classe "Service1" à la fois dans le code et le fichier de configuration.
     public class Service1 : IService1
     {
-        public string GetData(int value)
+        public string GetData1(int value)
         {
-            return string.Format("You entered: {0}", value);
+            return string.Format("You entered in data1: {0}", value);
+        }
+
+        public string GetData2(int value)
+        {
+            return string.Format("You entered in data2: {0}", value);
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
